@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queueing System Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+            text-align: center;
+            color: #333333;
+        }
+
+        h1 {
+            color: #FF3366;
+        }
+
+        .tabs {
+            margin-bottom: 20px;
+        }
+
+        .tabs ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tabs ul li {
+            margin-right: 20px;
+        }
+
+        .tabs ul li a {
+            display: block;
+            padding: 10px;
+            background-color: #FF6600;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .tabs ul li a.active {
+            background-color: #FF3366;
+        }
+
+        .tabs ul li a:hover {
+            box-shadow: 0 0 10px #FF3366;
+        }
+
+        .calculator-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-container label {
+            display: inline-block;
+            width: 200px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-container input[type="text"] {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #FF6600;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .results-container {
+            text-align: left;
+        }
+
+        .results-container p {
+            margin-bottom: 10px;
+        }
+
+        .calculate-btn {
+            padding: 10px 20px;
+            background-color: #FF3366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .calculate-btn:hover {
+            box-shadow: 0 0 10px #FF3366;
+        }
+    </style>
+</head>
+<body>
+    <h1>Queueing System Calculator</h1>
+
+    <div class="tabs">
+        <ul>
+            <li><a href="{{ url_for('mm2') }}" class="{{ 'active' if tab == 'mm2' }}">M/M/2</a></li>
+            <li><a href="{{ url_for('mg2') }}" class="{{ 'active' if tab == 'mg2' }}">M/G/2</a></li>
+            <li><a href="{{ url_for('gg2') }}" class="{{ 'active' if tab == 'gg2' }}">G/G/2</a></li>
+        </ul>
+    </div>
+
+    <div class="calculator-container">
+        {% if tab == 'mm2' %}
+            <h2>M/M/2 Model</h2>
+            <form method="POST" action="{{ url_for('mm2') }}">
+                <div class="input-container">
+                    <label>Arrival Rate (λ):</label>
+                    <br>
+                    <input type="text" name="arrival_rate" required>
+                    <br><br>
+                    <label>Service Rate (μ):</label>
+                    <br>
+                    <input type="text" name="service_rate" required>
+                </div>
+
+                <div class="results-container">
+                    {% if results %}
+                        {% for key, value in results.items() %}
+                            <p>{{ key }}: {{ value|float }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <input type="submit" value="Calculate" class="calculate-btn">
+            </form>
+        {% endif %}
+
+        {% if tab == 'mg2' %}
+            <h2>M/G/2 Model</h2>
+            <form method="POST" action="{{ url_for('mg2') }}">
+                <div class="input-container">
+                    <label>Arrival Rate (λ):</label>
+                    <br>
+                    <input type="text" name="arrival_rate" required>
+                    <br><br>
+                    <label>Mean Service Time (μ):</label>
+                    <br>
+                    <input type="text" name="mean_service_time" required>
+                    <br><br>
+                    <label>Variance of Service Time (σ²):</label>
+                    <br>
+                    <input type="text" name="variance_service_time" required>
+                </div>
+
+                <div class="results-container">
+                    {% if results %}
+                        {% for key, value in results.items() %}
+                            <p>{{ key }}: {{ value|float }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <input type="submit" value="Calculate" class="calculate-btn">
+            </form>
+        {% endif %}
+        
+        {% if tab == 'gg2' %}
+            <h2>G/G/2 Model</h2>
+            <form method="POST" action="{{ url_for('gg2') }}">
+                <div class="input-container">
+                    <label>Arrival Rate (λ):</label>
+                    <br>
+                    <input type="text" name="arrival_rate" required>
+                    <br><br>
+                    <label>Service Rate (μ):</label>
+                    <br>
+					<input type="text" name="service_rate" required>
+                    <br><br>
+					<label>Standard Deviation of Arrival Time (σ):</label>
+                    <br>
+                    <input type="text" name="std_arrival_time" required>
+                    <br><br>
+                    <label>Standard Deviation of Service Time (σ):</label>
+                    <br>
+                    <input type="text" name="std_service_time" required>
+                </div>
+
+                <div class="results-container">
+                    {% if results %}
+                        {% for key, value in results.items() %}
+                            <p>{{ key }}: {{ value|float }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <input type="submit" value="Calculate" class="calculate-btn">
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
