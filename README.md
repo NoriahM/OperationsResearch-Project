@@ -131,9 +131,9 @@ Distributed under the MIT License. See [LICENSE](https://github.com/NoriahM/Oper
 
 ## Authors
 
-* **Noriah Mudassir** - ** 
-* **Ilhaam Soomro** - ** 
-* **Syeda Fariya Raza** - ** 
+* **Noriah Mudassir** 
+* **Ilhaam Soomro** 
+* **Syeda Fariya Raza** 
 * **Syed Shaheer Ali Zaidi** 
 
 
