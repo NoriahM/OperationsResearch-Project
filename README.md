@@ -14,7 +14,7 @@
     <a href="https://github.com/NoriahM/OperationsResearch-Project"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
-    <a href="http://noriahm.pythonanywhere.com">VCheck out the app</a>
+    <a href="http://noriahm.pythonanywhere.com">Check out the app</a>
     .
     <a href="https://github.com/NoriahM/OperationsResearch-Project/issues">Report Bug</a>
     .
